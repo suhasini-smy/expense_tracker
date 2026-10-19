@@ -1,0 +1,57 @@
+
+{% extends "base.html" %}
+
+{% block title %}Register | Expense Tracker{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+        <div class="card page-card">
+            <div class="card-body p-4 p-md-5">
+                <h2 class="mb-2">Create an account</h2>
+                <p class="text-secondary mb-4">
+                    Start managing your personal finances.
+                </p>
+
+                <form method="POST" action="{{ url_for('register') }}">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                    <div class="mb-3">
+                        <label class="form-label" for="username">Username</label>
+                        <input class="form-control" id="username"
+                               name="username" maxlength="80"
+                               autocomplete="username" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="email">Email</label>
+                        <input class="form-control" id="email" name="email"
+                               type="email" maxlength="255"
+                               autocomplete="email" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label" for="password">Password</label>
+                        <input class="form-control" id="password"
+                               name="password" type="password"
+                               minlength="8" maxlength="128"
+                               autocomplete="new-password" required>
+                        <div class="form-text">
+                            Use at least 8 characters.
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary w-100" type="submit">
+                        Register
+                    </button>
+                </form>
+
+                <p class="text-center mt-4 mb-0">
+                    Already registered?
+                    <a href="{{ url_for('login') }}">Log in</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
